@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: 'jdbc:mysql://host.docker.internal:3306/qlik'
+    username: qlik_user
+    password: qlik_pass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+server:
+  error:
+    include-message: always

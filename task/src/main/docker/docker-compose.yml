@@ -1,0 +1,9 @@
+version: "2"
+services:
+  spring:
+    image: qlik_image
+    container_name: qlik_server
+    platform: linux/amd64
+    ports:
+      - "8080:8080"
+    env_file: "template.env"

@@ -1,0 +1,14 @@
+version: "2"
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    platform: linux/amd64
+    ports:
+      - "3306:3306"
+    env_file: "template.env"
+    volumes:
+        - /Users/chenningrui/Projects/qlik/sqlVolume:/docker-entrypoint-initdb.d
+volumes:
+  sql-dump-volume:
+    driver: local
