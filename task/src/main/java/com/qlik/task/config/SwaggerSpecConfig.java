@@ -35,9 +35,9 @@ public class SwaggerSpecConfig {
 
     private ApiInfo apiInfoMetaData() {
 
-        return new ApiInfoBuilder().title("NAME OF SERVICE")
+        return new ApiInfoBuilder().title("Palindrome API")
                 .description("API Endpoint Decoration")
-                .contact(new Contact("Dev-Team", "https://www.dev-team.com/", "dev-team@gmail.com"))
+                .contact(new Contact("Ningrui Chan", "https://www.linkedin.com/in/ningrui-c-43504a172/", "chaningrui@gmail.com"))
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.0.0")
