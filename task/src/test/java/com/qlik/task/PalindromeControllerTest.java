@@ -48,7 +48,7 @@ public class PalindromeControllerTest {
 
         HttpEntity<String> request = new HttpEntity<>(requestStr, headers);
 
-        ResponseEntity<PalindromeDto> result = this.restTemplate.postForEntity(uri, request, PalindromeDto.class);
+        ResponseEntity<PalindromeDto> result = this.restTemplate.postForEntity(uri + "/" + requestStr, request, PalindromeDto.class);
         PalindromeDto palindromeDto = result.getBody();
 
         assertTrue(palindromeDto.isPalindrome());
@@ -74,8 +74,8 @@ public class PalindromeControllerTest {
         HttpEntity<String> addRequest1 = new HttpEntity<>(requestStr1, headers);
         HttpEntity<String> addRequest2 = new HttpEntity<>(requestStr2, headers);
 
-        this.restTemplate.postForEntity(addUrl, addRequest1, PalindromeDto.class);
-        this.restTemplate.postForEntity(addUrl, addRequest2, PalindromeDto.class);
+        this.restTemplate.postForEntity(addUrl + "/" + requestStr1, addRequest1, PalindromeDto.class);
+        this.restTemplate.postForEntity(addUrl + "/" + requestStr2, addRequest2, PalindromeDto.class);
 
         PalindromeDto[] response = this.restTemplate.getForObject(allUrl, PalindromeDto[].class);
 
@@ -92,7 +92,7 @@ public class PalindromeControllerTest {
 
         HttpEntity<String> request = new HttpEntity<>(requestStr, headers);
 
-        ResponseEntity<PalindromeDto> result = this.restTemplate.postForEntity(uri, request, PalindromeDto.class);
+        ResponseEntity<PalindromeDto> result = this.restTemplate.postForEntity(uri + "/" + requestStr, request, PalindromeDto.class);
         PalindromeDto palindromeDto = result.getBody();
 
         assertTrue(palindromeDto.isPalindrome());
@@ -117,8 +117,8 @@ public class PalindromeControllerTest {
         HttpEntity<String> addRequest1 = new HttpEntity<>(addRequestStr1, headers);
         HttpEntity<String> addRequest2 = new HttpEntity<>(addRequestStr2, headers);
 
-        this.restTemplate.postForEntity(addUrl, addRequest1, PalindromeDto.class);
-        this.restTemplate.postForEntity(addUrl, addRequest2, PalindromeDto.class);
+        this.restTemplate.postForEntity(addUrl + "/" + addRequestStr1, addRequest1, PalindromeDto.class);
+        this.restTemplate.postForEntity(addUrl + "/" + addRequestStr2, addRequest2, PalindromeDto.class);
 
         String containingRequest = "k";
 
@@ -138,13 +138,13 @@ public class PalindromeControllerTest {
         HttpEntity<String> addRequest1 = new HttpEntity<>(addRequestStr1, headers);
         HttpEntity<String> addRequest2 = new HttpEntity<>(addRequestStr2, headers);
 
-        this.restTemplate.postForEntity(addUrl, addRequest1, PalindromeDto.class);
-        this.restTemplate.postForEntity(addUrl, addRequest2, PalindromeDto.class);
+        this.restTemplate.postForEntity(addUrl + "/" + addRequestStr1, addRequest1, PalindromeDto.class);
+        this.restTemplate.postForEntity(addUrl + "/" + addRequestStr2, addRequest2, PalindromeDto.class);
 
         boolean requestStr = true;
         HttpEntity<Boolean> containingRequest = new HttpEntity<>(requestStr, headers);
 
-        PalindromeDto[] response = this.restTemplate.postForObject(containingUrl, containingRequest, PalindromeDto[].class);
+        PalindromeDto[] response = this.restTemplate.postForObject(containingUrl + "/" + requestStr, containingRequest, PalindromeDto[].class);
 
         assertEquals(1, response.length);
         assertEquals("kok", response[0].text());
@@ -161,13 +161,13 @@ public class PalindromeControllerTest {
         HttpEntity<String> addRequest1 = new HttpEntity<>(addRequestStr1, headers);
         HttpEntity<String> addRequest2 = new HttpEntity<>(addRequestStr2, headers);
 
-        this.restTemplate.postForEntity(addUrl, addRequest1, PalindromeDto.class);
-        this.restTemplate.postForEntity(addUrl, addRequest2, PalindromeDto.class);
+        this.restTemplate.postForEntity(addUrl + "/" + addRequestStr1, addRequest1, PalindromeDto.class);
+        this.restTemplate.postForEntity(addUrl + "/" + addRequestStr2, addRequest2, PalindromeDto.class);
 
         boolean requestStr = false;
         HttpEntity<Boolean> containingRequest = new HttpEntity<>(requestStr, headers);
 
-        Palindrome[] response = this.restTemplate.postForObject(containingUrl, containingRequest, Palindrome[].class);
+        Palindrome[] response = this.restTemplate.postForObject(containingUrl + "/" + requestStr, containingRequest, Palindrome[].class);
 
         response[0].isPalindrome();
         assertEquals(2, response.length);
@@ -182,7 +182,7 @@ public class PalindromeControllerTest {
         HttpHeaders headers = new HttpHeaders();
 
         HttpEntity<String> addRequest = new HttpEntity<>(addRequestStr, headers);
-        ResponseEntity<PalindromeDto> result = this.restTemplate.postForEntity(addUrl, addRequest, PalindromeDto.class);
+        ResponseEntity<PalindromeDto> result = this.restTemplate.postForEntity(addUrl + "/" + addRequestStr, addRequest, PalindromeDto.class);
 
         assertTrue(result.getBody().isPalindrome());
 

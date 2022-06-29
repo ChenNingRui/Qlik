@@ -43,15 +43,15 @@ public class PalindromeController {
     }
 
     @ApiOperation(value = "Find a Palindrome entity based on the test", notes = "Return a Palindromes, text is an unique value in DB")
-    @PostMapping("/findByText{text}")
+    @PostMapping("/findByText/{text}")
     public PalindromeDto findByText(@PathVariable String text) throws ApiException {
         Palindrome rv = palindromeService.findByText(text);
         return new PalindromeDto(rv.getId(), rv.getText(), rv.isPalindrome(), rv.getDate());
     }
 
     @ApiOperation(value = "Find all Palindromes from DB based on the isPalindrome value", notes = "Return a Palindromes list")
-    @PostMapping("/findAllByIsPalindrome")
-    public List<PalindromeDto> findAllByIsPalindrome(@RequestBody boolean isPalindrome) {
+    @PostMapping("/findAllByIsPalindrome/{isPalindrome}")
+    public List<PalindromeDto> findAllByIsPalindrome(@PathVariable boolean isPalindrome) {
         if (isPalindrome) {
             return convertToDto(palindromeService.findAllByIsPalindromeTrue());
         } else {
@@ -72,5 +72,4 @@ public class PalindromeController {
         palindromeService.deleteById(id);
         return HttpStatus.OK;
     }
-
 }
