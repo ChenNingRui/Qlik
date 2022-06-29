@@ -66,10 +66,6 @@ public class PalindromeService {
         return palindromeRepository.findByTextContaining(text);
     }
 
-    public void deleteAll() {
-        palindromeRepository.deleteAll();
-    }
-
     public Palindrome deleteById(Long id) throws ApiException {
         Optional<Palindrome> exist = palindromeRepository.findById(id);
         if (!exist.isPresent()) {

@@ -29,22 +29,22 @@ public class PalindromeController {
     }
 
     @ApiOperation(value = "Add a Palindrome entity to DB", notes = "Return a Palindromes")
-    @PostMapping("/add")
-    public PalindromeDto add(@RequestBody String text) throws ApiException {
+    @PostMapping("/add/{text}")
+    public PalindromeDto add(@PathVariable String text) throws ApiException {
         Palindrome rv = palindromeService.add(text);
         return new PalindromeDto(rv.getId(), rv.getText(), rv.isPalindrome(), rv.getDate());
     }
 
     @ApiOperation(value = "Find a Palindrome entity based on the ID", notes = "Return a Palindromes, text is an unique value in DB")
-    @PostMapping("/findById")
-    public PalindromeDto findById(@RequestBody Long palindromeId) throws ApiException {
+    @PostMapping("/findById/{palindromeId}")
+    public PalindromeDto findById(@PathVariable Long palindromeId) throws ApiException {
         Palindrome rv = palindromeService.findById(palindromeId);
         return new PalindromeDto(rv.getId(), rv.getText(), rv.isPalindrome(), rv.getDate());
     }
 
     @ApiOperation(value = "Find a Palindrome entity based on the test", notes = "Return a Palindromes, text is an unique value in DB")
-    @PostMapping("/findByText")
-    public PalindromeDto findByText(@RequestBody String text) throws ApiException {
+    @PostMapping("/findByText{text}")
+    public PalindromeDto findByText(@PathVariable String text) throws ApiException {
         Palindrome rv = palindromeService.findByText(text);
         return new PalindromeDto(rv.getId(), rv.getText(), rv.isPalindrome(), rv.getDate());
     }
